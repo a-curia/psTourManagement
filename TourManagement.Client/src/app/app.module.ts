@@ -43,7 +43,7 @@ import { EnsureAcceptHeaderInterceptor } from './shared/ensure-accept-header-int
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS,
+      provide: HTTP_INTERCEPTORS, //add the interceptor - interceptors are called in the order they are provided
       useClass: EnsureAcceptHeaderInterceptor,
       multi: true
     },
