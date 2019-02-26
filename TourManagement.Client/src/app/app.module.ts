@@ -66,15 +66,16 @@ export class AppModule {
 
     // automapper mappings
 
+
     automapper.createMap('TourFormModel', 'TourForCreation')
       .forSourceMember('band', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => { opts.ignore(); })
       .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => { opts.ignore(); })
       .forMember('bandid', function (opts) { opts.mapFrom('band'); });
 
     automapper.createMap('TourFormModel', 'TourWithManagerForCreation')
-      .forSourceMember('band', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => 
+      .forSourceMember('band', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) =>
         { opts.ignore(); })
-      .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => 
+      .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) =>
         { opts.ignore(); })
       .forMember('bandid', function (opts) { opts.mapFrom('band'); })
       .forMember('managerid', function (opts) { opts.mapFrom('manager'); })
