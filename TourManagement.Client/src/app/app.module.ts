@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http/src/client';
 
 // import routing module
@@ -22,7 +22,6 @@ import { ErrorLoggerService } from './shared/error-logger.service';
 import { HandleHttpErrorInterceptor } from './shared/handle-http-error-interceptor';
 import { WriteOutJsonInterceptor } from './shared/write-out-json-interceptor';
 import { EnsureAcceptHeaderInterceptor } from './shared/ensure-accept-header-interceptor';
-import { TourWithShowsComponent } from './tours/shared/tour-with-shows/tour-with-shows.component';
 import { ShowSingleComponent } from './tours/shows/show-single/show-single.component';
 
 @NgModule({
@@ -35,7 +34,6 @@ import { ShowSingleComponent } from './tours/shows/show-single/show-single.compo
     ToursComponent,
     TourUpdateComponent,
     ShowAddComponent,
-    TourWithShowsComponent,
     ShowSingleComponent
   ],
   imports: [
@@ -81,6 +79,21 @@ export class AppModule {
         { opts.ignore(); })
       .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) =>
         { opts.ignore(); })
+      .forMember('bandid', function (opts) { opts.mapFrom('band'); })
+      .forMember('managerid', function (opts) { opts.mapFrom('manager'); })
+
+      automapper.createMap('TourFormModel', 'TourWithShowsForCreation')
+      .forSourceMember('band', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) =>
+        { opts.ignore(); }) //ignore this field
+      .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) =>
+        { opts.ignore(); })//ignore this field
+      .forMember('bandid', function (opts) { opts.mapFrom('band'); })
+
+      automapper.createMap('TourFormModel', 'TourWithManagerAndShowsForCreation')
+      .forSourceMember('band', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) =>
+        { opts.ignore(); }) //ignore this field
+      .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) =>
+        { opts.ignore(); })//ignore this field
       .forMember('bandid', function (opts) { opts.mapFrom('band'); })
       .forMember('managerid', function (opts) { opts.mapFrom('manager'); })
 
