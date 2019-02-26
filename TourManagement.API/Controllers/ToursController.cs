@@ -126,7 +126,40 @@ namespace TourManagement.API.Controllers
             
             return await AddSpecificTour(tour);
         }
-        
+
+
+        [HttpPost]
+        [RequestHeaderMatchesMediaType("Content-Type",
+            new[] { "application/vnd.marvin.tourwitshowsforcreation+json" })]
+        public async Task<IActionResult> AddTourWithShows(
+            [FromBody] TourWithShowsForCreation tour)
+        {
+            if (tour == null)
+            {
+                return BadRequest();
+            }
+
+            // validation of the DTO happens here
+
+            return await AddSpecificTour(tour);
+        }
+        [HttpPost]
+        [RequestHeaderMatchesMediaType("Content-Type",
+            new[] { "application/vnd.marvin.tourwithmanagerandshowsforcreation+json" })]
+        public async Task<IActionResult> AddTourWithManagerAndShows(
+            [FromBody] TourWithManagerAndShowsForCreation tour)
+        {
+            if (tour == null)
+            {
+                return BadRequest();
+            }
+
+            // validation of the DTO happens here
+
+            return await AddSpecificTour(tour);
+        }
+
+
         private async Task<IActionResult> GetSpecificTour<T>(Guid tourId, bool includeShows = false) where T : class
         {
             var tourFromRepo = await _tourManagementRepository.GetTour(tourId, includeShows);
