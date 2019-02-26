@@ -61,7 +61,7 @@ namespace TourManagement.API.Controllers
 
         [HttpGet("{tourId}", Name = "GetTour")]
         [RequestHeaderMatchesMediaType("Accept",
-            new[] { "application/vnd.marvin.tour+json" })]
+            new[] { /*"application/json", //use GetDefaultTour instead */ "application/vnd.marvin.tour+json" })]
         public async Task<IActionResult> GetTour(Guid tourId)
         {
             return await GetSpecificTour<Tour>(tourId);
@@ -77,7 +77,7 @@ namespace TourManagement.API.Controllers
 
         [HttpPost] 
         [RequestHeaderMatchesMediaType("Content-Type", 
-            new[] { "application/json",
+            new[] { "application/json", //Content-Type must always be passed so we and add application/json
                     "application/vnd.marvin.tourforcreation+json" })]
         public async Task<IActionResult> AddTour([FromBody] TourForCreation tour)
         {
