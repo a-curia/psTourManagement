@@ -23,6 +23,7 @@ import { HandleHttpErrorInterceptor } from './shared/handle-http-error-intercept
 import { WriteOutJsonInterceptor } from './shared/write-out-json-interceptor';
 import { EnsureAcceptHeaderInterceptor } from './shared/ensure-accept-header-interceptor';
 import { TourWithShowsComponent } from './tours/shared/tour-with-shows/tour-with-shows.component';
+import { ShowSingleComponent } from './tours/shows/show-single/show-single.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TourWithShowsComponent } from './tours/shared/tour-with-shows/tour-with
     ToursComponent,
     TourUpdateComponent,
     ShowAddComponent,
-    TourWithShowsComponent
+    TourWithShowsComponent,
+    ShowSingleComponent
   ],
   imports: [
     BrowserModule,
