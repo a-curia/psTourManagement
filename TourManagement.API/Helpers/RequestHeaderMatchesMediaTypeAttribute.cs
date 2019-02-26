@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourManagement.API.Helpers
 {
-    [AttributeUsage(AttributeTargets.All, Inherited = true, AllowMultiple = true)] // multiple instances of this attribute can be used to decorate the same action
+    [AttributeUsage(AttributeTargets.All, Inherited = true, AllowMultiple = true)] // multiple instances of this attribute can be used to decorate the same action - Request header and Content ytpe header
     //this will be our Action Constraint attribute - this is the Custom Action Constraint
     public class RequestHeaderMatchesMediaTypeAttribute : Attribute, IActionConstraint
     {
@@ -22,7 +22,7 @@ namespace TourManagement.API.Helpers
 
         public int Order
         {
-            get { return 0; }
+            get { return 0; } // run in the same stage
         }
 
         // if we want this route to be matched by this constraint it should return true

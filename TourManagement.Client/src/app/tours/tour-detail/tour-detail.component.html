@@ -16,19 +16,20 @@
                     <div class="col-md-2">Ends on:</div>
                     <div class="col-md-10">{{tour.endDate|date:'MM/dd/yyyy'}}</div>
                 </div>
+                <!-- show estimatedProfits only if the object contain this field -->
                 <div class="row" *ngIf='tour.estimatedProfits' style="margin-top:10px;" >
                     <div class="col-md-2">Estimated profits:</div>
                     <div class="col-md-10">{{tour.estimatedProfits}}</div>
                 </div>
                 <div class="row" style="margin-top:10px;" >
-                        <div class="col-md-2 h3">Shows</div>                     
+                        <div class="col-md-2 h3">Shows</div>
                     </div>
 
                     <div class="row" style="margin-top:10px;" >
-                        <button class="btn btn-primary"                           
+                        <button class="btn btn-primary"
                         [routerLink]="['show-add']"
                         style="width:100px; margin-left:10px">Add show(s)</button>
-                    </div>                
+                    </div>
 
                 <app-shows *ngIf='tour && tour.shows && tour.shows.length'></app-shows>
     </div>

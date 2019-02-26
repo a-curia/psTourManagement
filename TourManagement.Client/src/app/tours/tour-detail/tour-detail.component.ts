@@ -14,7 +14,7 @@ import { Show } from '../shows/shared/show.model';
 })
 export class TourDetailComponent implements OnInit, OnDestroy {
 
-  private tour: any; // views are not type awere
+  private tour: any; // views are not type awere and we will use the same view for admin and nonadmin
   private tourId: string;
   private sub: Subscription;
   private isAdmin: boolean = false;
