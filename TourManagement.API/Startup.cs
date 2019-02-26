@@ -39,6 +39,7 @@ namespace TourManagement.API
                    .Add("application/vnd.marvin.tourwithestimatedprofits+json");
                 }
 
+                // media types for input
                 var jsonInputFormatter = setupAction.InputFormatters
                    .OfType<JsonInputFormatter>().FirstOrDefault();
                 if (jsonInputFormatter != null)
@@ -113,6 +114,7 @@ namespace TourManagement.API
                 config.CreateMap<Entities.Manager, Dtos.Manager>();
                 config.CreateMap<Entities.Show, Dtos.Show>();
 
+                //automappings for input
                 config.CreateMap<Dtos.TourForCreation, Entities.Tour>();
                 config.CreateMap<Dtos.TourWithManagerForCreation, Entities.Tour>();
             });

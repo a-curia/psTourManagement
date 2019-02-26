@@ -75,7 +75,7 @@ namespace TourManagement.API.Controllers
             return await GetSpecificTour<TourWithEstimatedProfits>(tourId);
         }
 
-        [HttpPost]
+        [HttpPost] 
         [RequestHeaderMatchesMediaType("Content-Type", 
             new[] { "application/json",
                     "application/vnd.marvin.tourforcreation+json" })]
@@ -91,7 +91,7 @@ namespace TourManagement.API.Controllers
             return await AddSpecificTour(tour);
         }
 
-        [HttpPost]
+        [HttpPost] 
         [RequestHeaderMatchesMediaType("Content-Type", 
             new[] { "application/vnd.marvin.tourwithmanagerforcreation+json" })]
         public async Task<IActionResult> AddTourWithManager(
@@ -119,13 +119,13 @@ namespace TourManagement.API.Controllers
             return Ok(Mapper.Map<T>(tourFromRepo));
         }
 
-        public async Task<IActionResult> AddSpecificTour<T>(T tour) where T : class
+        public async Task<IActionResult> AddSpecificTour<T>(T tour) where T : class // to avoid code duplication
         {
             var tourEntity = Mapper.Map<Entities.Tour>(tour);
 
             if (tourEntity.ManagerId == Guid.Empty)
             {
-                tourEntity.ManagerId = new Guid("fec0a4d6-5830-4eb8-8024-272bd5d6d2bb");
+                tourEntity.ManagerId = new Guid("fec0a4d6-5830-4eb8-8024-272bd5d6d2bb"); // fake managerId
             }
 
             await _tourManagementRepository.AddTour(tourEntity);
@@ -137,7 +137,7 @@ namespace TourManagement.API.Controllers
 
             var tourToReturn = Mapper.Map<Tour>(tourEntity);
 
-            return CreatedAtRoute("GetTour",
+            return CreatedAtRoute("GetTour", // return to created at rout to generate the URI for a specific tour
                 new { tourId = tourToReturn.TourId },
                 tourToReturn);
         }
