@@ -37,6 +37,10 @@ namespace TourManagement.API
                    .Add("application/vnd.marvin.tour+json");
                     jsonOutputFormatter.SupportedMediaTypes
                    .Add("application/vnd.marvin.tourwithestimatedprofits+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                        .Add("application/vnd.marvin.tourwithshows+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                        .Add("application/vnd.marvin.tourwithestimatedprofitsandshows+json");
                 }
 
                 // media types for input
@@ -117,6 +121,11 @@ namespace TourManagement.API
                 //automappings for input
                 config.CreateMap<Dtos.TourForCreation, Entities.Tour>();
                 config.CreateMap<Dtos.TourWithManagerForCreation, Entities.Tour>();
+
+                config.CreateMap<Entities.Tour, Dtos.TourWithShows>()
+                    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
+                config.CreateMap<Entities.Tour, Dtos.TourWithEstimatedProfitsAndShows>()
+                    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
             });
 
             // Enable CORS
